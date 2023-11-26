@@ -1,12 +1,15 @@
 import React from 'react';
+import {Router} from "react-router-dom";
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import history from "./history";
+import './scss/app.scss';
 
 const app = (
-    <App />
-)
-root.render(app);
+    <Router history={history}>
+        <App/>
+    </Router>
+);
 
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(app);
