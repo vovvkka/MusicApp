@@ -1,0 +1,70 @@
+.header {
+  max-width: 1450px;
+  margin: 0 auto;
+  height: 70px;
+  padding: 0 30px;
+  border-bottom: 1px solid #a8a8a8;
+  display: flex;
+
+  &__block {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-left {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__logo a {
+    font-size: 25px;
+    color: #000000;
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
+
+  &__nav {
+    margin-left: 50px;
+
+    &-link li {
+      color: black !important;
+    }
+
+    ul {
+      display: flex;
+      align-items: center;
+
+      li {
+        margin-right: 40px;
+        color: #7e7e7e;
+        letter-spacing: 0.4px;
+        transition: all 0.2s;
+
+        &:hover {
+          color: #fc363b;
+        }
+
+        :active {
+          color: black;
+        }
+      }
+    }
+  }
+
+  &__auth-button {
+    background: transparent;
+    border: 1px solid black;
+    color: #000;
+    border-radius: 5px;
+    padding: 10px 20px;
+    transition: all 0.4s;
+    letter-spacing: 0.4px;
+
+    &:hover {
+      background: #000;
+      color: #fff;
+    }
+  }
+}

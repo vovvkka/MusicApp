@@ -24,6 +24,12 @@
     background: #eeeeee;
     min-height: 100vh;
     position: relative;
+
+    &__background {
+        margin: 0 auto;
+        max-width: 1450px;
+        background: #ffffff;
+    }
 }
 
 .container {
@@ -51,9 +57,6 @@
 }
 
 .main {
-    margin: 0 auto;
-    background: #ffffff;
-    max-width: 1450px;
     min-height: 500px;
 }
 
