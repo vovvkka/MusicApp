@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const SALT_WORK_FACTOR = 5;
 
 const UserSchema = new Schema({
-    gmail: {
+    email: {
         type: String,
         required: true,
         unique: true,

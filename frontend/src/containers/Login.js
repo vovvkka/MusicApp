@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import close from "../assets/close-eye.png";
 import open from "../assets/open-eye.png";
-// import {useDispatch} from "react-redux";
 import {Link} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {loginUser} from "../store/actions/usersActions";
 
 const Login = () => {
-    // const dispatch = useDispatch();
-    // const error = useSelector(state => state.users.loginError);
+    const dispatch = useDispatch();
 
     const [user, setUser] = useState({
         email: '',
@@ -16,7 +16,7 @@ const Login = () => {
 
     const onSubmit = e => {
         e.preventDefault();
-        // dispatch(loginUser({...user}));
+        dispatch(loginUser({...user}));
     };
 
     const inputUserChangeHandler = e => {
