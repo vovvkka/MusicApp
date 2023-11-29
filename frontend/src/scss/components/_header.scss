@@ -1,9 +1,11 @@
+@import "../variables";
+
 .header {
   max-width: 1450px;
   margin: 0 auto;
   height: 70px;
   padding: 0 30px;
-  border-bottom: 1px solid #a8a8a8;
+  border-bottom: 1px solid $light-gray;
   display: flex;
 
   &__block {
@@ -20,7 +22,7 @@
 
   &__logo a {
     font-size: 25px;
-    color: #000000;
+    color: $black;
     font-weight: bold;
     letter-spacing: 2px;
   }
@@ -29,7 +31,7 @@
     margin-left: 50px;
 
     &-link li {
-      color: black !important;
+      color: $black !important;
     }
 
     ul {
@@ -43,11 +45,11 @@
         transition: all 0.2s;
 
         &:hover {
-          color: #fc363b;
+          color: $hover-red;
         }
 
         :active {
-          color: black;
+          color: $black;
         }
       }
     }
@@ -55,7 +57,7 @@
 
   &__auth-button {
     background: transparent;
-    border: 1px solid black;
+    border: 1px solid $black;
     color: #000;
     border-radius: 5px;
     padding: 10px 20px;
@@ -63,8 +65,8 @@
     letter-spacing: 0.4px;
 
     &:hover {
-      background: #000;
-      color: #fff;
+      background: $black;
+      color: $white;
     }
   }
 }

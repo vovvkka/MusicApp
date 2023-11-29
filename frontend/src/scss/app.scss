@@ -26,8 +26,9 @@
     position: relative;
 
     &__background {
+        height: 100vh;
         margin: 0 auto;
-        max-width: 1450px;
+        max-width: 1300px;
         background: #ffffff;
     }
 }
@@ -57,7 +58,7 @@
 }
 
 .main {
-    min-height: 500px;
+
 }
 
 ::-webkit-scrollbar {

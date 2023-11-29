@@ -9,7 +9,7 @@ const Header = () => {
                 <div className="header__block-left">
                     <div className="header__logo">
                         <NavLink to="/">
-                            VA Музыка
+                            GE Музыка
                         </NavLink>
                     </div>
 
