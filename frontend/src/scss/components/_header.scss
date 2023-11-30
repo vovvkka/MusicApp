@@ -69,4 +69,24 @@
       color: $white;
     }
   }
+
+  &__dropdown {
+    cursor: pointer;
+
+    &-el {
+      width: 150px;
+      color: $black;
+      cursor: text;
+      font-weight: bold;
+      border-bottom: 1px solid $light-gray;
+      padding: 10px 0;
+      margin-bottom: 10px;
+    }
+
+    &-user {
+      padding: 6px;
+      border-radius: 20px;
+      border: 1px solid black;
+    }
+  }
 }

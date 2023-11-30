@@ -2,8 +2,9 @@ import axiosApi from '../../axiosApi';
 import {
     loginFailure,
     loginRequest,
-    loginSuccess,
+    loginSuccess, logoutFailure, logoutRequest, logoutSuccess,
 } from '../slices/usersSlice';
+import {historyPush} from "./historyActions";
 
 // export const registerUser = (userData) => {
 //     return async (dispatch) => {
@@ -35,6 +36,7 @@ export const loginUser = (userData) => {
             const response = await axiosApi.post('/users/sessions', userData);
 
             dispatch(loginSuccess(response.data.user));
+            dispatch(historyPush('/'));
         } catch (e) {
             if (e.response && e.response.data) {
                 dispatch(loginFailure(e.response.data));
@@ -45,19 +47,20 @@ export const loginUser = (userData) => {
     };
 };
 
-// export const logoutUser = () => {
-//     return async (dispatch) => {
-//         try {
-//             dispatch(logoutRequest());
-//
-//             await axiosApi.delete('/users/sessions');
-//
-//             dispatch(logoutSuccess());
-//         } catch (e) {
-//             dispatch(logoutFailure(e));
-//         }
-//     };
-// };
+export const logoutUser = () => {
+    return async (dispatch) => {
+        try {
+            dispatch(logoutRequest());
+
+            await axiosApi.delete('/users/sessions');
+
+            dispatch(logoutSuccess());
+            dispatch(historyPush('/'));
+        } catch (e) {
+            dispatch(logoutFailure(e));
+        }
+    };
+};
 
 // export const forgotPassword = email => {
 //     return async dispatch => {

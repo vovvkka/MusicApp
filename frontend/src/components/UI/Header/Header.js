@@ -1,5 +1,6 @@
 import React from 'react';
-import {Link, NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
+import Anonymous from "../Anonymous/Anonymous";
 
 const Header = () => {
     return (
@@ -28,9 +29,7 @@ const Header = () => {
                     </div>
                 </div>
 
-                <div className="header__block-right">
-                    <Link to="/login" className="header__auth-button">Войти</Link>
-                </div>
+                <Anonymous/>
 
             </div>
         </div>
