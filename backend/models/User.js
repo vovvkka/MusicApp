@@ -5,27 +5,52 @@ const {nanoid} = require("nanoid");
 const Schema = mongoose.Schema;
 const SALT_WORK_FACTOR = 5;
 
+const validateUsernameLength = username => {
+    return username.length < 20;
+};
+
+const validateEmail = email => {
+    return /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(email);
+};
+
+const validateUnique = async value => {
+    const user = await User.findOne({email: value});
+
+    if (user) return false;
+};
+
+const validatePasswordLength = password => {
+    return password.length > 7;
+};
+
 const UserSchema = new Schema({
     email: {
         type: String,
         required: true,
         unique: true,
-        validate: {
-            validator: async value => {
-                const user = await User.findOne({gmail: value});
-
-                if (user) return false;
-            },
-            message: 'Пользователь уже зарегимтрирован!'
-        }
+        validate: [{
+            validator: validateUnique,
+            message: 'Пользователь с данной почтой уже зарегистрирован!'
+        }, {
+            validator: validateEmail,
+            message: 'Неккоретный почтовый адрес!'
+        }]
     },
     username: {
         type: String,
         required: true,
+        validate: {
+            validator: validateUsernameLength,
+            message: 'Имя пользователя слишком длинное!'
+        }
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        validate: {
+            validator: validatePasswordLength,
+            message: 'Пароль слишком короткий!'
+        }
     },
     token: {
         type: String,
@@ -37,7 +62,10 @@ const UserSchema = new Schema({
         enum: ['artist', 'admin', 'user'],
         default: 'user',
     },
-    avatarImage: String,
+    avatarImage: {
+        type: String,
+        default: null
+    },
 });
 
 UserSchema.pre('save', async function (next) {

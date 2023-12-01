@@ -14,6 +14,18 @@ const usersSlice = createSlice({
     name,
     initialState,
     reducers: {
+        registerRequest(state) {
+            state.registerLoading = true;
+            state.registerError = null;
+        },
+        registerSuccess(state, action) {
+            state.registerLoading = false;
+            state.user = action.payload;
+        },
+        registerFailure(state, action) {
+            state.registerLoading = false;
+            state.registerError = action.payload;
+        },
         loginRequest(state) {
             state.loginLoading = true;
             state.loginError = null;
@@ -42,6 +54,9 @@ const usersSlice = createSlice({
 });
 
 export const {
+    registerRequest,
+    registerSuccess,
+    registerFailure,
     loginRequest,
     loginSuccess,
     loginFailure,

@@ -1,29 +1,37 @@
 import React, {useState} from 'react';
+import {registerUser} from "../store/actions/usersActions";
+import {useDispatch, useSelector} from "react-redux";
 import close from "../assets/close-eye.png";
 import open from "../assets/open-eye.png";
 import {Link} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {loginUser} from "../store/actions/usersActions";
-import {historyPush} from "../store/actions/historyActions";
 
-const Login = () => {
+const Register = () => {
     const dispatch = useDispatch();
-    const error = useSelector(state => state.users.loginError);
+    const error = useSelector(state => state.users.registerError);
 
+    const [isShow, setIsShow] = useState(false);
     const [user, setUser] = useState({
         email: '',
+        username: '',
         password: '',
     });
-    const [isShow, setIsShow] = useState(false);
 
     const onSubmit = e => {
         e.preventDefault();
-        dispatch(loginUser({...user}));
+        dispatch(registerUser({...user}));
     };
 
     const inputUserChangeHandler = e => {
         const {name, value} = e.target;
         setUser(prev => ({...prev, [name]: value}));
+    };
+
+    const getRegisterFieldError = fieldName => {
+        try {
+            return error.error[fieldName].message;
+        } catch {
+            return undefined;
+        }
     };
 
     return (
@@ -35,8 +43,6 @@ const Login = () => {
                     </div>
 
                     <div className="auth__block">
-
-
                         <div className="auth__input-block">
                             <label>Email</label>
                             <input
@@ -46,6 +52,19 @@ const Login = () => {
                                 value={user.email}
                                 onChange={inputUserChangeHandler}
                             />
+                            <p className="auth__error">{getRegisterFieldError("email")}</p>
+                        </div>
+
+                        <div className="auth__input-block">
+                            <label>Имя пользователя</label>
+                            <input
+                                type="text"
+                                name="username"
+                                className="auth__input"
+                                value={user.username}
+                                onChange={inputUserChangeHandler}
+                            />
+                            <p className="auth__error">{getRegisterFieldError("username")}</p>
                         </div>
 
                         <div className="auth__input-block">
@@ -66,37 +85,27 @@ const Login = () => {
                                     alt="eye"
                                 />
                             </div>
+                            <p className="auth__error">{getRegisterFieldError("password")}</p>
 
-                            {error && <p className="auth__error">{error?.error}</p>}
-
-
-                            <Link to="/forgot">
-                                <p className="auth__forgot">Забыли пароль?</p>
+                            <Link to="/login">
+                                <p className="auth__forgot">Уже есть аккаунт?</p>
                             </Link>
                         </div>
                     </div>
 
                     <div className="auth__buttons">
                         <button
-                            className="auth__auth-button"
                             type="submit"
+                            className="auth__auth-button"
                         >
-                            Войти
-                        </button>
-
-                        <button
-                            type="button"
-                            className="auth__auth-button auth__auth-button-reg"
-                            onClick={() => dispatch(historyPush('/register'))}
-                        >
-                           Создать ID
+                            Создать ID
                         </button>
                     </div>
+
                 </div>
             </div>
         </form>
-
     );
 };
 
-export default Login;
+export default Register;

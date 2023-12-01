@@ -1,6 +1,6 @@
 @import "../variables";
 
-.login {
+.auth {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -71,7 +71,16 @@
   &__forgot {
     font-size: 15px;
     padding-top: 10px;
+    margin-left: 5px;
     color: $black;
+  }
+
+  &__error {
+    color: #c04150;
+    font-size: 14px;
+    margin-left: 5px;
+    letter-spacing: 0.6px;
+    padding-top: 5px;
   }
 
   &__buttons {
@@ -100,10 +109,7 @@
       margin-top: 10px;
       background: $white;
       border: 1px solid $light-gray;
-
-      a {
-        color: $black;
-      }
+      color: $black;
 
       &:hover {
         background: #f1f1f1;

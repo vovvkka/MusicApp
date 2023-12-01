@@ -4,6 +4,7 @@ import {Redirect, Route, Switch} from "react-router-dom";
 import Main from "./containers/Main";
 import Login from "./containers/Login";
 import {useSelector} from "react-redux";
+import Register from "./containers/Register";
 
 const ProtectedRoute = ({ isAllowed, redirectTo, ...props }) => {
     return isAllowed ? <Route {...props} /> : <Redirect to="/" />;
@@ -24,6 +25,13 @@ const App = () => {
                     exact
                 />
 
+                <ProtectedRoute
+                    path="/register"
+                    component={Register}
+                    isAllowed={!user}
+                    redirectTo="/"
+                    exact
+                />
             </Switch>
         </Layout>
     );

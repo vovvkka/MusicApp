@@ -2,31 +2,27 @@ import axiosApi from '../../axiosApi';
 import {
     loginFailure,
     loginRequest,
-    loginSuccess, logoutFailure, logoutRequest, logoutSuccess,
+    loginSuccess, logoutFailure, logoutRequest, logoutSuccess, registerFailure, registerRequest, registerSuccess,
 } from '../slices/usersSlice';
 import {historyPush} from "./historyActions";
 
-// export const registerUser = (userData) => {
-//     return async (dispatch) => {
-//         try {
-//             dispatch(registerRequest());
-//
-//             const response = await axiosApi.post('/users', userData);
-//
-//             dispatch(registerSuccess(response.data));
-//             dispatch(addNotification('Вы успешно зарегистрировались!', "success"));
-//         } catch (e) {
-//             dispatch(addNotification('Произошла ошибка!', "error"));
-//             if (e.response && e.response.data) {
-//                 dispatch(registerFailure(e.response.data));
-//                 throw e;
-//             } else {
-//                 dispatch(registerFailure({global: 'No internet'}));
-//                 throw e;
-//             }
-//         }
-//     };
-// };
+export const registerUser = (userData) => {
+    return async (dispatch) => {
+        try {
+            dispatch(registerRequest());
+
+            const response = await axiosApi.post('/users', userData);
+
+            dispatch(registerSuccess(response.data));
+        } catch (e) {
+            if (e.response && e.response.data) {
+                dispatch(registerFailure(e.response.data));
+            } else {
+                dispatch(registerFailure({global: 'No internet'}));
+            }
+        }
+    };
+};
 
 export const loginUser = (userData) => {
     return async (dispatch) => {

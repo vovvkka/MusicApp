@@ -3,25 +3,26 @@ const User = require('../models/User');
 
 const router = express.Router();
 
-// router.post('/', async (req, res) => {
-//     const {gmail, username, password} = req.body;
-//
-//     if (!gmail || !username || !password) {
-//         return res.status(400).send({error: 'users/post!'});
-//     }
-//
-//     const userData = {gmail, username, password, avatarImage: req.body.avatarImage || null};
-//
-//     try {
-//         const user = new User(userData);
-//         user.generateToken();
-//
-//         await user.save();
-//         res.send(user);
-//     } catch (e) {
-//         res.status(400).send({error: e.errors});
-//     }
-// });
+router.post('/', async (req, res) => {
+    const {email, username, password} = req.body;
+
+    if (!email || !username || !password) {
+        return res.status(400).send({error: 'Заполните все поля!'});
+    }
+
+    const userData = {email, username, password};
+
+    try {
+        const user = new User(userData);
+        user.generateToken();
+
+        await user.save();
+
+        res.send(user);
+    } catch (e) {
+        res.status(400).send({error: e.errors});
+    }
+});
 
 router.post('/sessions', async (req, res) => {
     const user = await User.findOne({email: req.body.email});
