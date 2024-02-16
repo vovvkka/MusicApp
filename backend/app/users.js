@@ -25,12 +25,12 @@ router.post('/', async (req, res) => {
 });
 
 router.post('/sessions', async (req, res) => {
-    const user = await User.findOne({email: req.body.email});
+    const user = await User.findOne({ email: req.body.email });
 
     if (!user) {
         return res
             .status(401)
-            .send({error: 'Неправильный логин или пароль!'});
+            .send({error: 'Неправильный логин или пароль!!!'});
     }
 
     const isMatch = await user.checkPassword(req.body.password);
