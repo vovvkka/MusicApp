@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {registerUser} from "../store/actions/usersActions";
 import {useDispatch, useSelector} from "react-redux";
 import close from "../assets/close-eye.png";
 import open from "../assets/open-eye.png";
 import {Link} from "react-router-dom";
+import {clearRegisterErrors} from "../store/slices/usersSlice";
 
 const Register = () => {
     const dispatch = useDispatch();
@@ -28,11 +29,18 @@ const Register = () => {
 
     const getRegisterFieldError = fieldName => {
         try {
+            console.log(error);
             return error.error[fieldName].message;
         } catch {
             return undefined;
         }
     };
+
+    useEffect(() => {
+        return () => {
+          dispatch(clearRegisterErrors());
+        };
+    }, [dispatch]);
 
     return (
         <form onSubmit={onSubmit}>

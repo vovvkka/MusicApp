@@ -5,6 +5,7 @@ import Main from "./containers/Main";
 import Login from "./containers/Login";
 import {useSelector} from "react-redux";
 import Register from "./containers/Register";
+import Settings from "./containers/Settings";
 
 const ProtectedRoute = ({ isAllowed, redirectTo, ...props }) => {
     return isAllowed ? <Route {...props} /> : <Redirect to="/" />;
@@ -31,6 +32,13 @@ const App = () => {
                     isAllowed={!user}
                     redirectTo="/"
                     exact
+                />
+
+                <ProtectedRoute
+                    path="/settings"
+                    component={Settings}
+                    isAllowed={user}
+                    redirectTo="/"
                 />
             </Switch>
         </Layout>

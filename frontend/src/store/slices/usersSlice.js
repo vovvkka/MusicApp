@@ -50,6 +50,12 @@ const usersSlice = createSlice({
             state.logoutLoading = false;
             state.logoutError = action.payload;
         },
+        clearLoginErrors(state) {
+            state.loginError = null;
+        },
+        clearRegisterErrors(state) {
+            state.registerError = null;
+        }
     },
 });
 
@@ -62,7 +68,9 @@ export const {
     loginFailure,
     logoutRequest,
     logoutSuccess,
-    logoutFailure
+    logoutFailure,
+    clearLoginErrors,
+    clearRegisterErrors
 } = usersSlice.actions;
 
 export default usersSlice;

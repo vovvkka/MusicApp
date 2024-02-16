@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import close from "../assets/close-eye.png";
 import open from "../assets/open-eye.png";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {loginUser} from "../store/actions/usersActions";
 import {historyPush} from "../store/actions/historyActions";
+import {clearLoginErrors} from "../store/slices/usersSlice";
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -25,6 +26,12 @@ const Login = () => {
         const {name, value} = e.target;
         setUser(prev => ({...prev, [name]: value}));
     };
+
+    useEffect(() => {
+        return () => {
+            dispatch(clearLoginErrors());
+        }
+    }, [dispatch]);
 
     return (
         <form onSubmit={onSubmit}>

@@ -24,7 +24,7 @@ const Anonymous = () => {
             key: '1',
         },
         {
-            label: <Link to="/settings">Настройки</Link>,
+            label: <Link to="/settings/profile">Настройки</Link>,
             key: '2',
         },
         {
